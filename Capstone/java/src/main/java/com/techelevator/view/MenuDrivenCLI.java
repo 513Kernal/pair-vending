@@ -1,5 +1,6 @@
 package com.techelevator.view;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class MenuDrivenCLI {
@@ -19,5 +20,25 @@ public class MenuDrivenCLI {
 
     public String promptForSelection(String[] options) {
         return (String) menu.getChoiceFromOptions(options);
+    }
+
+    public String promptForString(String prompt) {
+        System.out.print(prompt);
+        return userInput.nextLine();
+    }
+
+    public BigDecimal promptForBigDecimal(String prompt) {
+        BigDecimal result = null;
+        while (result == null) {
+            try {
+                System.out.print(prompt);
+                String input = userInput.nextLine();
+                int deposit = Integer.parseInt(input);
+                result = new BigDecimal(deposit);
+            } catch (NumberFormatException e) {
+                System.out.println("\nPlease enter a valid whole number dollar value! NO DOGE COINS!");
+            }
+        }
+        return result;
     }
 }
